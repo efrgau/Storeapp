@@ -4,7 +4,7 @@
     @for( product of products(); track product){
       <app-product 
       [product]="product"
-      (addToCart)="fromChild($event)"
+      (addToCart)="addToCart($event)"
       />  
     }@empty {
       <span>No existen productos actuales en la tienda.</span>
