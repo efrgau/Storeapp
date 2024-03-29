@@ -1,5 +1,19 @@
-<p></p>
-<p></p>
-<p>
-    <app-counter message="message"></app-counter>
-</p>
+<div class="px-10">
+    <h1 class="text-lg font-bold">About</h1>
+    <p class="text-xs">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt saepe harum exercitationem ut sit laboriosam ex error odio natus eveniet. Numquam inventore recusandae voluptas ratione laudantium iusto. Dolore, assumenda ducimus!
+    </p>
+    <p class="text-xs">
+        Numero de clientes: <span>
+            @if(duration()>0){
+                <app-counter [duration]="duration()" [message]="message() " />
+            }@else {
+                <p>el valor no es adecuado en la duración.</p>
+            }
+            
+        </span>
+    </p>
+    <div>
+        <app-wave-audio audioUrl="assets/audio.mp3" />
+    </div>
+</div>
