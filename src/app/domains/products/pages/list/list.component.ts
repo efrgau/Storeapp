@@ -1,9 +1,10 @@
 import { Component, Input, inject, signal } from '@angular/core';
-import { ProductComponent } from './../../components/product/product.component';
+import { ProductComponent } from '@products/components/product/product.component';
 import { CommonModule } from '@angular/common';
-import {HeaderComponent} from './../../../shared/components/header/header.component';
-import {Product} from './../../../shared/models/product.model';
-import { CartService } from '../../../shared/services/cart.service';
+import {HeaderComponent} from '@shared/components/header/header.component';
+import {Product} from '@shared/models/product.model';
+import { CartService } from '@shared/services/cart.service';
+import { ProductService } from '@shared/services/product.service';
 
 @Component({
   selector: 'app-list',
@@ -15,69 +16,20 @@ import { CartService } from '../../../shared/services/cart.service';
 export class ListComponent {
   products = signal<Product[]>([]);
   private cartService = inject(CartService);
+  private productService = inject(ProductService);
   
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.productService.getProducts()
+    .subscribe({next:(products)=>{
+      this.products.set(products);
+    }, error: ()=>{
 
-  constructor(){
-    const initProducts: Product[]=[
-      { id:Date.now(),
-        title:'Zapatos Nike',
-        price:250000,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Buso Retail d2',
-        price:28500,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Balene Blusa',
-        price:21500,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Falda Retail 2',
-        price:80500,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Gorra IO eras',
-        price:245000,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Buso Retail d2',
-        price:28500,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Balene Blusa',
-        price:21500,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Falda Retail 2',
-        price:80500,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-      { id:Date.now(),
-        title:'Gorra IO eras',
-        price:245000,
-        image:'https://picsum.photos/640/640?r='+Math.random(),
-        createdAt:new Date().toISOString()
-      },
-    ];
-
-    this.products.set(initProducts);
+    }
+  });
+    
   }
-
   addToCart(product:Product){
     this.cartService.addToCart(product);
   }
