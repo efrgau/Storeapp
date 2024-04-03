@@ -1,14 +1,16 @@
-<div class="px-10">
+<div>
     <h1 class="text-lg font-bold">About</h1>
     <p class="text-xs">
-        Lorem ipsum dolor <span highlight>sit amet consectetur adipisicing elit.</span>  Nesciunt saepe harum exercitationem ut sit laboriosam ex error odio natus eveniet. Numquam inventore recusandae voluptas ratione laudantium iusto. Dolore, assumenda ducimus!
+        Lorem ipsum dolor <span highlight>sit amet consectetur adipisicing elit.</span> Nesciunt saepe harum
+        exercitationem ut sit laboriosam ex error odio natus eveniet. Numquam inventore recusandae voluptas ratione
+        laudantium iusto. Dolore, assumenda ducimus!
     </p>
     <p class="text-xs">
         Numero de clientes: <span>
             @if(duration()>0){
-                <app-counter [duration]="duration()" [message]="message() " />
+            <app-counter [duration]="duration()" [message]="message() " />
             }@else {
-                <p>el valor no es adecuado en la duración.</p>
+            <p>el valor no es adecuado en la duración.</p>
             }
         </span>
     </p>

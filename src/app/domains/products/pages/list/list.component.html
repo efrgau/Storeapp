@@ -1,6 +1,14 @@
-<div class="container mx-auto">
-  <app-header/>
-  <div class="grid grid-cols-4 gap-8 mt-5">
+<div class="flex space-x-4 mt-5">
+  <div class="w-80">
+    <ul>
+      @for(category of categories(); track category.id){
+        <li>
+          <a routerLink="/" [queryParams]="{category_id:category.id}" routerLinkActive="router-link-active" >{{category.name}}</a>
+        </li>
+      }
+    </ul>
+  </div>
+  <div class="grid grid-cols-4 gap-8">
     @for( product of products(); track product){
       <app-product 
       [product]="product"
@@ -9,10 +17,6 @@
     }@empty {
       <span>No existen productos actuales en la tienda.</span>
     }
-  
-    
   </div>
 </div>
-
-
 
